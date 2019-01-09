@@ -4,6 +4,7 @@ import com.cwgx.newhorizon.model.User;
 import com.cwgx.newhorizon.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,12 @@ public class UserResource {
     public @ResponseBody Iterable<User> getAllUsers() {
         // This returns a JSON or XML with the users
         return userRepository.findAll();
+    }
+
+    @RequestMapping(path = "/users/{userName}", method = RequestMethod.GET)
+    public @ResponseBody User userFindByName(@PathVariable String userName) {
+        // This returns a JSON or XML with the users
+        return userRepository.userFindByName(userName);
     }
 
 }
