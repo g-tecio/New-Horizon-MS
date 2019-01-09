@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -21,13 +25,15 @@ public class UserResource {
         return userRepository.findAll();
     }
 
-    /*@RequestMapping(path = "/users/post", method = RequestMethod.POST)
-    public ResponseEntity<User> update(@RequestBody User user){
-        return new ResponseEntity<User>(user, HttpStatus.OK);
-    }*/
+    @RequestMapping(path = "/users/{userName}", method = RequestMethod.GET)
+    public @ResponseBody User userFindByName(@PathVariable String userName) {
+        // This returns a JSON or XML with the users
+        return userRepository.userFindByName(userName);
+    }
 
     @PostMapping("/users/post")
     User newUser(@RequestBody User newUser){
         return userRepository.save(newUser);
     }
+
 }
