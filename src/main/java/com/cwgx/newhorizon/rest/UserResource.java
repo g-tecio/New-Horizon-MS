@@ -35,5 +35,4 @@ public class UserResource {
     User newUser(@RequestBody User newUser){
         return userRepository.save(newUser);
     }
-
 }
