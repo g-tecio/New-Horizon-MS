@@ -22,7 +22,7 @@ public class EventResource {
     }
 
     @PostMapping("/events/post")
-    Event newUser(@RequestBody Event newEvent){
+    Event newEvent(@RequestBody Event newEvent){
         return eventRepository.save(newEvent);
     }
 
