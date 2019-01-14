@@ -1,6 +1,4 @@
 package com.cwgx.newhorizon.rest;
-
-
 import com.cwgx.newhorizon.model.Event;
 import com.cwgx.newhorizon.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 @Controller
 @RestController
 public class EventResource {
