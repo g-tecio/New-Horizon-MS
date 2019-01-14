@@ -1,14 +1,11 @@
 package com.cwgx.newhorizon.model;
-
-
 import javax.persistence.*;
-
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "address")
 public class Address {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id_address;
 
     private Integer event_id;
