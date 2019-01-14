@@ -37,4 +37,30 @@ public class EventResource {
     public @ResponseBody Event findEventById(@PathVariable Integer id_event) {
         return eventRepository.findEventById(id_event);
     }
+
+    /*@RequestMapping(value = "events/update/{id_event}", method = RequestMethod.PUT)
+    public void updateById(@PathVariable("id_event") Integer id_event, @RequestBody Event event) {
+
+    }*/
+
+    @RequestMapping(method=RequestMethod.PUT, value="events/update/{id_event}")
+    public Event updateEvent(@PathVariable Integer id_event, @RequestBody Event event) {
+        Event updateEvent = eventRepository.findOne(id_event);
+        updateEvent.setEvent_name(event.getEvent_name());
+        updateEvent.setDescription(event.getDescription());
+        updateEvent.setVenue_name(event.getVenue_name());
+        updateEvent.setAttire(event.getAttire());
+        updateEvent.setEvent_image(event.getEvent_image());
+        updateEvent.setCapacity(event.getCapacity());
+        updateEvent.setRevenue_generation(event.getRevenue_generation());
+        updateEvent.setStart_date(event.getStart_date());
+        updateEvent.setEnd_date(event.getEnd_date());
+        updateEvent.setLatitude(event.getLatitude());
+        updateEvent.setLongitude(event.getLongitude());
+        updateEvent.setEvent_type(event.getEvent_type());
+        updateEvent.setStatus(event.getStatus());
+        updateEvent.setPublished(event.isPublished());
+        updateEvent.setEvent_price(event.getEvent_price());
+        return eventRepository.save(updateEvent);
+    }
 }
