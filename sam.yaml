@@ -8,7 +8,7 @@ Resources:
     Properties:
       Handler: LambdaHandler::handleRequest
       Runtime: java8
-      CodeUri: target/spring-boot-lambda-1.0.0-SNAPSHOT.jar
+      CodeUri: target/New-Horizon-MS-1.0.0-SNAPSHOT.jar
       MemorySize: 1512
       Policies: AWSLambdaBasicExecutionRole
       Timeout: 60
