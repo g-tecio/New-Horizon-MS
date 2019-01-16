@@ -6,7 +6,7 @@ Resources:
   LambdaSpringBootFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: LambdaHandler::handleRequest
+      Handler: com.cwgx.newhorizon.LambdaHandler::handleRequest
       Runtime: java8
       CodeUri: target/New-Horizon-MS-1.0.0-SNAPSHOT.jar
       MemorySize: 1512
@@ -24,4 +24,4 @@ Outputs:
     Description: URL for application
     Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Stage/languages'
     Export:
-      Name: LambdaSpringBootApi
+      Name: SESEvents
