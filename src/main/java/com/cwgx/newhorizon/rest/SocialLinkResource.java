@@ -27,4 +27,14 @@ public class SocialLinkResource {
     SocialLink newSocial(@RequestBody SocialLink newSocial){
         return social_linkRepository.save(newSocial);
     }
+
+    @RequestMapping(method=RequestMethod.PUT, value="socialnet/update/{id_social_link}")
+    public SocialLink updateSocialLink(@PathVariable Integer id_social_link, @RequestBody SocialLink socialLink) {
+        SocialLink updateSocialLink = social_linkRepository.findOne(id_social_link);
+        updateSocialLink.setEvent_id(socialLink.getEvent_id());
+        updateSocialLink.setSocial_network(socialLink.getSocial_network());
+        updateSocialLink.setSource(socialLink.getSource());
+        updateSocialLink.setStatus(socialLink.getStatus());
+        return social_linkRepository.save(updateSocialLink);
+    }
 }

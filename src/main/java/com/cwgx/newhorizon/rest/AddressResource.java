@@ -24,4 +24,15 @@ public class AddressResource {
         return addressRepository.save(newAddress);
     }
 
+    @RequestMapping(method=RequestMethod.PUT, value="address/update/{id_address}")
+    public Address updateAddress(@PathVariable Integer id_address, @RequestBody Address address) {
+        Address updateAddress = addressRepository.findOne(id_address);
+        updateAddress.setEvent_id(address.getEvent_id());
+        updateAddress.setLine_address1(address.getLine_address1());
+        updateAddress.setLine_address2(address.getLine_address2());
+        updateAddress.setCity(address.getCity());
+        updateAddress.setState(address.getState());
+        updateAddress.setZip_code(address.getZip_code());
+        return addressRepository.save(updateAddress);
+    }
 }

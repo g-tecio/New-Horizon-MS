@@ -27,4 +27,14 @@ public class EventImageResource {
     EventImage newImage(@RequestBody EventImage newImage){
         return event_imageRepository.save(newImage);
     }
+
+    @RequestMapping(method=RequestMethod.PUT, value="image/update/{id_event_image}")
+    public EventImage updateImage(@PathVariable Integer id_event_image, @RequestBody EventImage eventImage) {
+        EventImage updateImage = event_imageRepository.findOne(id_event_image);
+        updateImage.setEvent_id(eventImage.getEvent_id());
+        updateImage.setSource(eventImage.getSource());
+        updateImage.setCreated_at(eventImage.getCreated_at());
+        updateImage.setStatus(eventImage.getStatus());
+        return event_imageRepository.save(updateImage);
+    }
 }

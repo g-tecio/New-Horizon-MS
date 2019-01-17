@@ -35,4 +35,16 @@ public class EventAttendanceResource {
     public @ResponseBody EventAttendance findAttendanceById(@PathVariable Integer id_event_attendance) {
         return eventAttendanceRepository.findAttendanceById(id_event_attendance);
     }
+
+    @RequestMapping(method=RequestMethod.PUT, value="eventsAttendance/update/{id_event_attendance}")
+    public EventAttendance updateEventAttendance(@PathVariable Integer id_event_attendance, @RequestBody EventAttendance eventAttendance) {
+        EventAttendance updateEventAttendance = eventAttendanceRepository.findOne(id_event_attendance);
+        updateEventAttendance.setEvent_id(eventAttendance.getEvent_id());
+        updateEventAttendance.setCustomer_id(eventAttendance.getCustomer_id());
+        updateEventAttendance.setCustomer_name(eventAttendance.getCustomer_name());
+        updateEventAttendance.setLast_modified(eventAttendance.getLast_modified());
+        updateEventAttendance.setCreated_at(eventAttendance.getCreated_at());
+        updateEventAttendance.setStatus(eventAttendance.getStatus());
+        return eventAttendanceRepository.save(updateEventAttendance);
+    }
 }
