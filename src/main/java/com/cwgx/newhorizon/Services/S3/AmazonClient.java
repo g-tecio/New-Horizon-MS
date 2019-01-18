@@ -33,7 +33,10 @@ public class AmazonClient {
     @Value("${gkz.s3.region}")
     private String region;
 
-
+    /*
+    *
+    * Make a connection with AWS
+    * */
 
     @PostConstruct
     private void initializeAmazon() {
@@ -46,7 +49,11 @@ public class AmazonClient {
 
     }
 
-
+    /*
+    *
+    *Convert the image from multipart file to a single file so the image
+    * gets stored as a .JPG file
+    **/
 
     private File convertMultiPartToFile(MultipartFile file) throws IOException {
         File convFile = new File(file.getOriginalFilename());
@@ -56,15 +63,26 @@ public class AmazonClient {
         return convFile;
     }
 
+    /*
+    *
+    * Rename the image with a Timestamp and the image's name
+    * */
     private String generateFileName(MultipartFile multiPart) {
         return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
     }
 
+    /*
+    *
+    * Send the S3 object to the bucket
+    * */
     private void uploadFileTos3bucket(String fileName, File file) {
         s3Client.putObject(new PutObjectRequest(bucketName, fileName, file)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
     }
-
+    /*
+    *
+    *Get back the URL where the image is stored
+    * */
     public String uploadFile(MultipartFile multipartFile) {
 
         String fileUrl = "";
@@ -80,6 +98,10 @@ public class AmazonClient {
         return "IT WORKS!!" + fileUrl;
     }
 
+    /*
+    *
+    * Delete the image from the bucket with the URL
+    * */
     public String deleteFileFromS3Bucket(String fileUrl) {
         String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
         s3Client.deleteObject(new DeleteObjectRequest(bucketName + "/", fileName));
